@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<h:head>
+		<title>Gestion de Revisiones de Observacion</title>
+		<style>
+			* {
+				font-family: Arial;
+			}
+		</style>
+	</h:head>
+	
+	<h:body>
+		<f:metadata>
+			<f:viewParam name="observacionId" value="#{gestionObservacionRevision.observacionId}" />
+			<f:viewParam name="usuarioId" value="#{gestionObservacionRevision.usuarioId}" />
+			<f:viewParam name="modalidad" value="#{gestionObservacionRevision.modalidad}" />
+			<f:event type="preRenderView" listener="#{gestionObservacionRevision.preRenderViewListener}" />
+		</f:metadata>
+		
+		<h2 style="color:#0CBC90;">NUEVA REVISION</h2>
+		
+		<h:form id="datosRevision" style="margin-top:15px;">
+			<h:panelGrid columns="2">
+				<h:commandButton id="volver" value="Volver" action="ObservacionesRevisiones" />
+				<h:commandButton id="guardar" value="Guardar" action="#{gestionObservacionRevision.altaRevision}" />
+			</h:panelGrid>
+			
+			<h:messages id="messages" showDetail="true" globalOnly="true" closable="true" />
+			
+			<h:panelGrid columns="3" style="margin-top:15px;">
+				<h:outputLabel value="ID" />
+				<h:inputText id="observacionId" disabled="true" value="#{gestionObservacionRevision.observacionRevisionGuiSeleccionada.id.observacionId}" />
+				<h:message for="observacionId" style="color:red" />
+				
+				<h:outputLabel value="Usuario" />
+				<h:selectOneMenu value="#{gestionObservacionRevision.observacionRevisionGuiSeleccionada.usuarioGui.usuarioId}" id="usuario">
+					<f:selectItem itemValue="#{null}" itemLabel="Seleccionar usuario..." />
+					<f:selectItems value="#{gestionObservacionRevision.listaUsuarios}"  var="u" 
+    				itemLabel="#{u.usuario}"
+               		itemValue="#{u.usuarioId}"/>
+				</h:selectOneMenu>
+				<h:message for="usuario" style="color:red" />	
+				
+				<h:outputLabel value="Fiabilidad" />
+				<h:selectOneMenu value="#{gestionObservacionRevision.observacionRevisionGuiSeleccionada.fiabilidad}" id="fiabilidad">
+					<f:selectItems value="#{gestionObservacionRevision.listaFiabilidad}"/>
+				</h:selectOneMenu>
+				<h:message for="fiabilidad" style="color:red" />
+				
+				<h:outputLabel value="Comentario" />
+				<h:inputText id="comentario" value="#{gestionObservacionRevision.observacionRevisionGuiSeleccionada.comentario}" />
+				<h:message for="comentario" style="color:red" />
+						
+			</h:panelGrid>
+		</h:form>
+	</h:body>
+</html>

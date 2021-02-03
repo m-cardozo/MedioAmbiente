@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+	<f:event listener="#{gestionZonas.seleccionarZonas}" type="preRenderView" />
+	<f:event type="preRenderView" listener="#{facesContext.externalContext.response.setHeader('Cache-Control', 'no-cache, no-store')}" />
+	
+	<h:head>
+		<title>Gestion de Zonas</title>
+		<style>
+			* {
+				font-family: Arial;
+			}
+			.tablaZonas {
+				margin-top: 15px;
+				border-collapse: collapse;
+				border: 1px solid #F5F5F5;
+				text-align: center;
+			}
+			.tablaZonasHeader {
+				background: none repeat sczonal 0 0 #0CBC90;
+				border-bottom: 1px solid #F5F5F5;
+				padding: 5px;
+			}
+		</style>
+	</h:head>
+	
+	<body>
+		<h2 style="color:#0CBC90;">ZONAS</h2>
+		
+		<h:link value="Volver" outcome="/index.xhtml" style="margin-right:10px;">
+			<f:param name="zonaId" value="" />
+			<f:param name="modalidad" value="insert" />
+		</h:link>
+	
+		<h:link value="Nuevo" outcome="AltaZona.xhtml">
+			<f:param name="zonaId" value="" />
+			<f:param name="modalidad" value="insert" />
+		</h:link>
+		
+		<h:form id="formTabla">
+			<h:panelGrid columns="3" style="margin-top:15px;">
+				<h:outputLabel value="Zona" />
+				<h:inputText id="zona" value="#{gestionZonas.criterioDescripcion}" />
+				<h:commandButton value="Buscar" action="#{gestionZonas.seleccionarZonas}" />
+			</h:panelGrid>
+			
+			<h:messages style="color:red; margin:10px;" />
+			
+			<h:dataTable value="#{gestionZonas.zonasSeleccionadas}" var="zona" styleClass="tablaZonas" headerClass="tablaZonasHeader">
+				<h:column>
+					<f:facet name="header">ID</f:facet>
+					#{zona.zonaId}
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Descripcion</f:facet>
+					#{zona.descripcion}
+				</h:column>
+				
+				<h:column></h:column>
+				
+				<h:column>
+					<f:facet name="header"></f:facet>
+					<h:link value="Modificar" outcome="ModificarZona.xhtml">
+						<f:param name="zonaId" value="${zona.zonaId}" />
+						<f:param name="modalidad" value="update" />
+					</h:link>
+				</h:column>
+				
+				<h:column></h:column>
+				
+				<h:column>
+					<f:facet name="header"></f:facet>
+					<h:link value="Eliminar" outcome="BajaZona.xhtml">
+						<f:param name="zonaId" value="${zona.zonaId}" />
+						<f:param name="modalidad" value="view" />
+					</h:link>
+				</h:column>
+			</h:dataTable>
+		</h:form>
+	</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+	
+	<h:head>
+		<title>Gestion de Imagenes de Observacion</title>
+		<style>
+			* {
+				font-family: Arial;
+			}
+		</style>
+	</h:head>
+	
+	<h:body>
+		<f:metadata>
+			<f:viewParam name="imagenId" value="#{gestionObservacionImagen.id}" />
+			<f:viewParam name="modalidad" value="#{gestionObservacionImagen.modalidad}" />
+			<f:event type="preRenderView" listener="#{gestionObservacionImagen.preRenderViewListener}" />
+		</f:metadata>
+		
+		<h2 style="color:#0CBC90;">MODIFICAR IMAGEN</h2>
+		
+		<h:form id="datosImagen" style="margin-top:15px;">
+			<h:panelGrid columns="2">
+				<h:commandButton id="volver" value="Volver" action="ObservacionesImagenes" />
+				
+				<h:commandButton id="modificar" value="Modificar" action="#{gestionObservacionImagen.modificarImagen}" />
+			</h:panelGrid>
+			
+			<h:messages id="messages" showDetail="true" globalOnly="true" closable="true" />
+			
+			<h:panelGrid columns="3" style="margin-top:15px;">
+				<h:outputLabel value="ID" />
+				<h:inputText id="imagenId" disabled="true" value="#{gestionObservacionImagen.observacionImagenGuiSeleccionada.observacionImagenId}" />
+				<h:message for="imagenId" style="color:red" />
+				
+				<h:outputLabel value="ID Observacion" />
+				<h:inputText id="observacionId" disabled="true" value="#{gestionObservacionImagen.observacionImagenGuiSeleccionada.observacionGui.observacionId}" />
+				<h:message for="observacionId" style="color:red" />
+				
+				<h:outputLabel value="Pathe" />
+				<h:inputText id="path" value="#{gestionObservacionImagen.observacionImagenGuiSeleccionada.path}" />
+				<h:message for="path" style="color:red" />
+				
+			</h:panelGrid>
+		</h:form>
+	</h:body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core_1_1">
+
+	<h:head>
+		<title>Gestion de Localidades</title>
+		<style>
+			* {
+				font-family: Arial;
+			}
+		</style>
+	</h:head>
+	
+	<body>
+		<f:metadata>
+			<f:viewParam name="localidadId" value="#{gestionLocalidad.id}" />
+			<f:viewParam name="modalidad" value="#{gestionLocalidad.modalidad}" />
+			<f:event type="preRenderView" listener="#{gestionLocalidad.preRenderViewListener}" />
+		</f:metadata>
+	
+		<h2 style="color:#0CBC90;">ELIMINAR LOCALIDAD</h2>
+	
+		<h:form id="datosLocalidad" style="margin-top:15px;">
+			<h:panelGrid columns="2">
+				<h:commandButton id="volver" value="Volver" action="Localidades" />
+				
+				<h:commandButton id="eliminar" value="Eliminar" action="#{gestionLocalidad.bajaLocalidad}">
+					<f:param name="localidadId" value="${gestionLocalidad.id}" />
+					<f:param name="modalidad" value="delete" />
+				</h:commandButton>
+			</h:panelGrid>
+			
+			<h:messages style="color:red; margin:10px;" />
+			
+			<h:panelGrid columns="3" style="margin-top:15px;">
+				<h:outputLabel value="ID" />
+				<h:inputText id="localidadId" disabled="true" value="#{gestionLocalidad.localidadGuiSeleccionado.localidadId}" />
+				<h:message for="localidadId" style="color:red" />
+				
+				<h:outputLabel value="Descripcion" />
+				<h:inputText id="descripcion" disabled="true" value="#{gestionLocalidad.localidadGuiSeleccionado.descripcion}" />
+				<h:message for="descripcion" style="color:red" />
+				
+				<h:outputLabel value="Departamento" />
+				<h:inputText id="departamento" disabled="true" value="#{gestionLocalidad.localidadGuiSeleccionado.departamentoGui.descripcion}" />
+				<h:message for="departamento" style="color:red" />
+			</h:panelGrid>
+		</h:form>
+	</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+	
+	
+	<h:head>
+		<title>Gestion de Revisiones de la observacion</title>
+		<style>
+			* {
+				font-family: Arial;
+			}
+			.tablaRevisiones {
+				margin-top: 15px;
+				border-collapse: collapse;
+				border: 1px solid #F5F5F5;
+				text-align: center;
+			}
+			.tablaRevisionesHeader {
+				background: none repeat scroll 0 0 #0CBC90;
+				border-bottom: 1px solid #F5F5F5;
+				padding: 5px;
+			}
+		</style>
+	</h:head>
+	
+	<body>
+		<f:metadata>
+			<f:viewParam name="observacionId" value="#{gestionObservacionRevisiones.observacionId}" />
+			<f:event type="preRenderView" listener="#{gestionObservacionRevisiones.preRenderViewListener}" />
+		</f:metadata>
+		<h2 style="color:#0CBC90;">REVISIONES</h2>
+		
+		<h:link value="Volver" outcome="/index.xhtml" style="margin-right:10px;">
+			<f:param name="observacionId" value="" />
+			<f:param name="revisionId" value="" />
+			<f:param name="modalidad" value="insert" />
+		</h:link>
+	
+		<h:link value="Nuevo" outcome="AltaObservacionRevision.xhtml">
+			<f:param name="observacionId" value="#{gestionObservacionRevisiones.observacionId}" />
+			<f:param name="revisionId" value="" />
+			<f:param name="modalidad" value="insert" />
+		</h:link>
+		
+		
+		<h:form id="formTabla">
+			<h:panelGrid columns="5" style="margin-top:15px;">
+				<h:outputLabel value="Revision" />
+				<f:param name="observacionId" value="#{gestionObservacionRevisiones.observacionId}" />
+				<h:inputText id="revision" value="#{gestionObservacionRevisiones.criterioObservacion}" />
+				<h:commandButton value="Buscar" action="#{gestionObservacionRevisiones.seleccionarRevisiones}" />
+			</h:panelGrid>
+			
+			<h:messages style="color:red; margin:10px;" />
+			
+			<h:dataTable value="#{gestionObservacionRevisiones.observacionRevisionSeleccionadas}" var="revision" styleClass="tablaRevisiones" headerClass="tablaRevisionesHeader">
+				<h:column>
+					<f:facet name="header">Observacion</f:facet>
+					#{revision.id.observacionId}
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Usuario</f:facet>
+					#{revision.usuario.usuario}
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Fiabilidad</f:facet>
+					#{revision.fiabilidad}
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Comentario</f:facet>
+					#{revision.comentario}
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Fecha</f:facet>
+					<h:outputText value="#{revision.fecha}">
+						<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+					</h:outputText>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Usuario</f:facet>
+					#{revision.usuario.usuario}
+				</h:column>
+				
+				<h:column></h:column>
+				
+				<h:column>
+					<f:facet name="header"></f:facet>
+					<h:link value="Modificar" outcome="ModificarObservacionRevision.xhtml">
+						<f:param name="observacionId" value="${revision.id.observacionId}" />
+						<f:param name="usuarioId" value="${revision.id.usuarioId}" />
+						<f:param name="modalidad" value="update" />
+					</h:link>
+				</h:column>
+				
+				<h:column></h:column>
+				
+				<h:column>
+					<f:facet name="header"></f:facet>
+					<h:link value="Eliminar" outcome="BajaObservacionRevision.xhtml">
+						<f:param name="observacionId" value="${revision.id.observacionId}" />
+						<f:param name="usuarioId" value="${revision.id.usuarioId}" />
+						<f:param name="modalidad" value="view" />
+					</h:link>
+				</h:column>
+			</h:dataTable>
+		</h:form>
+	</body>
+</html>

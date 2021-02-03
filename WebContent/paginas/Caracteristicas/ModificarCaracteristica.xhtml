@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+	
+	<h:head>
+		<title>Gestion de Caracteristicas</title>
+		<style>
+			* {
+				font-family: Arial;
+			}
+		</style>
+	</h:head>
+	
+	<h:body>
+		<f:metadata>
+			<f:viewParam name="caracteristicaId" value="#{gestionCaracteristica.id}" />
+			<f:viewParam name="modalidad" value="#{gestionCaracteristica.modalidad}" />
+			<f:event type="preRenderView" listener="#{gestionCaracteristica.preRenderViewListener}" />
+		</f:metadata>
+		
+		<h2 style="color:#0CBC90;">MODIFICAR CARACTERISTICA</h2>
+		
+		<h:form id="datosCaracteristica" style="margin-top:15px;">
+			<h:panelGrid columns="2">
+				<h:commandButton id="volver" value="Volver" action="Caracteristicas" />
+				
+				<h:commandButton id="modificar" value="Modificar" action="#{gestionCaracteristica.modificarCaracteristica}" />
+			</h:panelGrid>
+			
+			<h:messages id="messages" showDetail="true" globalOnly="true" closable="true" />
+			
+			<h:panelGrid columns="3" style="margin-top:15px;">
+				<h:outputLabel value="ID" />
+				<h:inputText id="caracteristicaId" disabled="true" value="#{gestionCaracteristica.caracteristicaGuiSeleccionada.caracteristicaId}" />
+				<h:message for="caracteristicaId" style="color:red" />
+				
+				<h:outputLabel value="Nombre" />
+				<h:inputText id="nombre" value="#{gestionCaracteristica.caracteristicaGuiSeleccionado.nombre}" />
+				<h:message for="nombre" style="color:red" />
+				
+				<h:outputLabel value="Etiqueta" />
+				<h:inputText id="etiqueta" value="#{gestionCaracteristica.caracteristicaGuiSeleccionado.etiqueta}" />
+				<h:message for="etiqueta" style="color:red" />
+				
+				<h:outputLabel value="Tipo de dato" />
+				<h:inputText id="tipoDato" value="#{gestionCaracteristica.caracteristicaGuiSeleccionado.tipoDato}" />
+				<h:message for="tipoDato" style="color:red" />		
+				
+				<h:outputLabel value="Fenomeno" />
+				<h:selectOneMenu value="#{gestionCaracteristica.fenomenoGuiSeleccionado.fenomenoId}">
+					<f:selectItems value="#{gestionCaracteristica.listaFenomenos}"  var="f" 
+    				itemLabel="#{f.nombre}"
+               		itemValue="#{f.fenomenoId}"/>
+
+				</h:selectOneMenu>
+				<h:message for="fenomeno" style="color:red" />	
+				
+			</h:panelGrid>
+		</h:form>
+	</h:body>
+</html>

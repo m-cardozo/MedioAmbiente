@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<h:head>
+		<title>Login</title>
+		<style>
+			* {
+				font-family: Arial;
+			}
+		</style>
+	</h:head>
+	<h:body>
+		<h:form>
+			<h3 style="color:#0CBC90;">Medio Ambiente Web - Login</h3>
+			<h:panelGrid columns="3" style="margin-top:15px;">
+				<h:outputText value="Usuario" />
+				<h:inputText id="usuario" value="#{gestionUsuario.usuario}"></h:inputText>
+				<h:message for="usuario"></h:message>
+	
+				<h:outputText value="Clave" />
+				<h:inputSecret id="clave" value="#{gestionUsuario.clave}"></h:inputSecret>
+				<h:message for="clave"></h:message>
+	
+				<h:commandButton action="#{gestionUsuario.login}" value="Ingresar"></h:commandButton>
+			</h:panelGrid>
+			</h:form>
+	</h:body>
+</html>

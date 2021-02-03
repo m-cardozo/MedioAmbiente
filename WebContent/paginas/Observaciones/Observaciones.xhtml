@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+
+	<f:event listener="#{gestionObservaciones.seleccionarObservaciones}" type="preRenderView" />
+	<f:event type="preRenderView" listener="#{facesContext.externalContext.response.setHeader('Cache-Control', 'no-cache, no-store')}" />
+	
+	<h:head>
+		<title>Gestion de Observaciones</title>
+		<style>
+			* {
+				font-family: Arial;
+			}
+			.tablaObservaciones {
+				margin-top: 15px;
+				border-collapse: collapse;
+				border: 1px solid #F5F5F5;
+				text-align: center;
+			}
+			.tablaObservacionesHeader {
+				background: none repeat scroll 0 0 #0CBC90;
+				border-bottom: 1px solid #F5F5F5;
+				padding: 5px;
+			}
+		</style>
+	</h:head>
+	
+	<body>
+		<h2 style="color:#0CBC90;">OBSERVACIONES</h2>
+		
+		<h:link value="Volver" outcome="/index.xhtml" style="margin-right:10px;">
+			<f:param name="observacionId" value="" />
+			<f:param name="modalidad" value="insert" />
+		</h:link>
+	
+		<h:link value="Nuevo" outcome="AltaObservacion.xhtml">
+			<f:param name="observacionId" value="" />
+			<f:param name="modalidad" value="insert" />
+		</h:link>
+		
+		<h:form id="formTabla">
+			
+			<h:panelGrid columns="7" style="margin-top:15px;">
+				<h:outputLabel value="Observacion" />
+				<h:inputText id="observacion" value="#{gestionObservaciones.criterioObservacion}" />
+				
+				<h:column></h:column>
+				
+				<h:column></h:column>
+				
+				<h:commandButton value="Buscar" action="#{gestionObservaciones.seleccionarObservaciones}" />
+				
+			</h:panelGrid>
+			
+			<h:messages style="color:red; margin:10px;" />
+			
+			<h:dataTable value="#{gestionObservaciones.observacionesSeleccionadas}" var="observacion" styleClass="tablaObservaciones" headerClass="tablaObservacionesHeader">
+				<h:column>
+					<f:facet name="header">ID</f:facet>
+					#{observacion.observacionId}
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Descripcion</f:facet>
+					#{observacion.descripcion}
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Fecha</f:facet>
+					#{observacion.fecha}
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Latitud</f:facet>
+					#{observacion.latitud}
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Longitud</f:facet>
+					#{observacion.longitud}
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Altitud</f:facet>
+					#{observacion.altitud}
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Criticidad</f:facet>
+					#{observacion.nivelCritico}
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Fenomeno</f:facet>
+					#{observacion.fenomeno.nombre}
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Localidad</f:facet>
+					#{observacion.localidad.descripcion}
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Usuario</f:facet>
+					#{observacion.usuario.usuario}
+				</h:column>
+				
+				<h:column></h:column>
+				
+				<h:column>
+					<f:facet name="header"></f:facet>
+					<h:link value="Modificar" outcome="ModificarObservacion.xhtml">
+						<f:param name="observacionId" value="${observacion.observacionId}" />
+						<f:param name="modalidad" value="update" />
+					</h:link>
+				</h:column>
+				
+				<h:column></h:column>
+				
+				<h:column>
+					<f:facet name="header"></f:facet>
+					<h:link value="Eliminar" outcome="BajaObservacion.xhtml">
+						<f:param name="observacionId" value="${observacion.observacionId}" />
+						<f:param name="modalidad" value="view" />
+					</h:link>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header"></f:facet>
+					<h:link value="Imagenes" outcome="/paginas/ObservacionesImagenes/ObservacionesImagenes.xhtml">
+						<f:param name="observacionId" value="${observacion.observacionId}" />
+						<f:param name="modalidad" value="view" />
+					</h:link>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header"></f:facet>
+					<h:link value="Revisiones" outcome="/paginas/ObservacionesRevisiones/ObservacionesRevisiones.xhtml">
+						<f:param name="observacionId" value="${observacion.observacionId}" />
+						<f:param name="modalidad" value="view" />
+					</h:link>
+				</h:column>
+			</h:dataTable>
+		</h:form>
+	</body>
+</html>

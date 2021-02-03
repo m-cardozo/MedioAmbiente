@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+	
+	
+	<h:head>
+		<title>Gestion de Imagenes de la observacion</title>
+		<style>
+			* {
+				font-family: Arial;
+			}
+			.tablaImagenes {
+				margin-top: 15px;
+				border-collapse: collapse;
+				border: 1px solid #F5F5F5;
+				text-align: center;
+			}
+			.tablaImagenesHeader {
+				background: none repeat scroll 0 0 #0CBC90;
+				border-bottom: 1px solid #F5F5F5;
+				padding: 5px;
+			}
+		</style>
+	</h:head>
+	
+	<body>
+		<f:metadata>
+			<f:viewParam name="observacionId" value="#{gestionObservacionImagenes.observacionId}" />
+			<f:event type="preRenderView" listener="#{gestionObservacionImagenes.preRenderViewListener}" />
+		</f:metadata>
+		<h2 style="color:#0CBC90;">IMAGENES</h2>
+		
+		<h:link value="Volver" outcome="/index.xhtml" style="margin-right:10px;">
+			<f:param name="observacionId" value="" />
+			<f:param name="imagenId" value="" />
+			<f:param name="modalidad" value="insert" />
+		</h:link>
+	
+		<h:link value="Nuevo" outcome="AltaObservacionImagen.xhtml">
+			<f:param name="observacionId" value="#{gestionObservacionImagenes.observacionId}" />
+			<f:param name="imagenId" value="" />
+			<f:param name="modalidad" value="insert" />
+		</h:link>
+		
+		
+		<h:form id="formTabla">
+			<h:panelGrid columns="5" style="margin-top:15px;">
+				<h:outputLabel value="Imagen" />
+				<f:param name="observacionId" value="#{gestionObservacionImagenes.observacionId}" />
+				<h:inputText id="imagen" value="#{gestionObservacionImagenes.criterioObservacion}" />
+				<h:commandButton value="Buscar" action="#{gestionObservacionImagenes.seleccionarImagenes}" />
+			</h:panelGrid>
+			
+			<h:messages style="color:red; margin:10px;" />
+			
+			<h:dataTable value="#{gestionObservacionImagenes.observacionImagenSeleccionadas}" var="imagen" styleClass="tablaImagenes" headerClass="tablaImagenesHeader">
+				<h:column>
+					<f:facet name="header">ID</f:facet>
+					#{imagen.observacionImagenId}
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Path</f:facet>
+					#{imagen.path}
+				</h:column>
+				
+				<h:column></h:column>
+				
+				<h:column>
+					<f:facet name="header"></f:facet>
+					<h:link value="Modificar" outcome="ModificarObservacionImagen.xhtml">
+						<f:param name="imagenId" value="${imagen.observacionImagenId}" />
+						<f:param name="modalidad" value="update" />
+					</h:link>
+				</h:column>
+				
+				<h:column></h:column>
+				
+				<h:column>
+					<f:facet name="header"></f:facet>
+					<h:link value="Eliminar" outcome="BajaObservacionImagen.xhtml">
+						<f:param name="imagenId" value="${imagen.observacionImagenId}" />
+						<f:param name="modalidad" value="view" />
+					</h:link>
+				</h:column>
+			</h:dataTable>
+		</h:form>
+	</body>
+</html>

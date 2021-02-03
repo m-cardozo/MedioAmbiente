@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core_1_1">
+
+	<h:head>
+		<title>Gestion de Imagenes de Observaciones</title>
+		<style>
+			* {
+				font-family: Arial;
+			}
+		</style>
+	</h:head>
+	
+	<body>
+		<f:metadata>
+			<f:viewParam name="imagenId" value="#{gestionObservacionImagen.id}" />
+			<f:viewParam name="modalidad" value="#{gestionObservacionImagen.modalidad}" />
+			<f:event type="preRenderView" listener="#{gestionObservacionImagen.preRenderViewListener}" />
+		</f:metadata>
+	
+		<h2 style="color:#0CBC90;">ELIMINAR IMAGEN</h2>
+	
+		<h:form id="datosImagen" style="margin-top:15px;">
+			<h:panelGrid columns="2">
+				<h:commandButton id="volver" value="Volver" action="ObservacionesImagenes" />
+				
+				<h:commandButton id="eliminar" value="Eliminar" action="#{gestionObservacionImagen.bajaImagen}">
+					<f:param name="imagenId" value="${gestionObservacionImagen.id}" />
+					<f:param name="modalidad" value="delete" />
+				</h:commandButton>
+			</h:panelGrid>
+			
+			<h:messages style="color:red; margin:10px;" />
+			
+			<h:panelGrid columns="3" style="margin-top:15px;">
+				<h:outputLabel value="ID" />
+				<h:inputText id="imagenId" disabled="true" value="#{gestionObservacionImagen.observacionImagenGuiSeleccionada.observacionImagenId}" />
+				<h:message for="imagenId" style="color:red" />
+				
+				<h:outputLabel value="ID Observacion" />
+				<h:inputText id="observacionId" disabled="true" value="#{gestionObservacionImagen.observacionImagenGuiSeleccionada.observacionGui.observacionId}" />
+				<h:message for="observacionId" style="color:red" />
+				
+				<h:outputLabel value="Path" />
+				<h:inputText id="path" disabled="true" value="#{gestionObservacionImagen.observacionImagenGuiSeleccionada.path}" />
+				<h:message for="path" style="color:red" />				
+				
+			</h:panelGrid>
+		</h:form>
+	</body>
+</html>

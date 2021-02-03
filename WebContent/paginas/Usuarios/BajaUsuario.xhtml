@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core_1_1">
+
+	<h:head>
+		<title>Gestion de Usuarios</title>
+		<style>
+			* {
+				font-family: Arial;
+			}
+		</style>
+	</h:head>
+	
+	<body>
+		<f:metadata>
+			<f:viewParam name="usuarioId" value="#{gestionUsuario.id}" />
+			<f:viewParam name="modalidad" value="#{gestionUsuario.modalidad}" />
+			<f:event type="preRenderView" listener="#{gestionUsuario.preRenderViewListener}" />
+		</f:metadata>
+	
+		<h2 style="color:#0CBC90;">ELIMINAR USUARIO</h2>
+	
+		<h:form id="datosRol" style="margin-top:15px;">
+			<h:panelGrid columns="2">
+				<h:commandButton id="volver" value="Volver" action="Usuarios" />
+				
+				<h:commandButton id="eliminar" value="Eliminar" action="#{gestionUsuario.bajaUsuario}">
+					<f:param name="usuarioId" value="${gestionUsuario.id}" />
+					<f:param name="modalidad" value="delete" />
+				</h:commandButton>
+			</h:panelGrid>
+			
+			<h:messages style="color:red; margin:10px;" />
+			
+			<h:panelGrid columns="3" style="margin-top:15px;">
+				<h:outputLabel value="ID" />
+				<h:inputText id="usuarioId" disabled="true" value="#{gestionUsuario.usuarioGuiSeleccionado.usuarioId}" />
+				<h:message for="usuarioId" style="color:red" />
+	
+				<h:outputLabel value="Nombre" />
+				<h:inputText id="nombre" disabled="true" value="#{gestionUsuario.usuarioGuiSeleccionado.nombre}" />
+				<h:message for="nombre" style="color:red" />
+				
+				<h:outputLabel value="Apellido" />
+				<h:inputText id="apellido" disabled="true" value="#{gestionUsuario.usuarioGuiSeleccionado.apellido}" />
+				<h:message for="apellido" style="color:red" />
+				
+				<h:outputLabel value="Usuario" />
+				<h:inputText id="usuario" disabled="true" value="#{gestionUsuario.usuarioGuiSeleccionado.usuario}" />
+				<h:message for="usuario" style="color:red" />
+				
+				<h:outputLabel value="Clave" />
+				<h:inputText id="clave" disabled="true" value="#{gestionUsuario.usuarioGuiSeleccionado.clave}" />
+				<h:message for="clave" style="color:red" />
+				
+				<h:outputLabel value="Tipo Documento" />
+				<h:inputText id="tipoDoumento" disabled="true" value="#{gestionUsuario.usuarioGuiSeleccionado.tipoDocumentoGui.descripcion}" />
+				<h:message for="tipoDocumento" style="color:red" />
+				
+				<h:outputLabel value="Documento" />
+				<h:inputText id="nroDocumento" disabled="true" value="#{gestionUsuario.usuarioGuiSeleccionado.nroDocumento}" />
+				<h:message for="nroDocumento" style="color:red" />
+				
+				<h:outputLabel value="Direccion" />
+				<h:inputText id="direccion" disabled="true" value="#{gestionUsuario.usuarioGuiSeleccionado.direccion}" />
+				<h:message for="direccion" style="color:red" />
+				
+				<h:outputLabel value="Mail" />
+				<h:inputText id="mail" disabled="true" value="#{gestionUsuario.usuarioGuiSeleccionado.mail}" />
+				<h:message for="mail" style="color:red" />
+				
+				<h:outputLabel value="Rol" />
+				<h:inputText id="rol" disabled="true" value="#{gestionUsuario.usuarioGuiSeleccionado.rolGui.descripcion}" />
+				<h:message for="rol" style="color:red" />
+				
+				<h:outputLabel value="Estado" />
+				<h:inputText id="estado" disabled="true" value="#{gestionUsuario.usuarioGuiSeleccionado.estado}" />
+				<h:message for="estado" style="color:red" />
+			</h:panelGrid>
+		</h:form>
+	</body>
+</html>

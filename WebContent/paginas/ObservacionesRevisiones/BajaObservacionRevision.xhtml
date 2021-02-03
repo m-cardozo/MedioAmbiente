@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core_1_1">
+
+	<h:head>
+		<title>Gestion de Revisiones de Observaciones</title>
+		<style>
+			* {
+				font-family: Arial;
+			}
+		</style>
+	</h:head>
+	
+	<body>
+		<f:metadata>
+			<f:viewParam name="observacionId" value="#{gestionObservacionRevision.observacionId}" />
+			<f:viewParam name="usuarioId" value="#{gestionObservacionRevision.usuarioId}" />
+			<f:viewParam name="modalidad" value="#{gestionObservacionRevision.modalidad}" />
+			<f:event type="preRenderView" listener="#{gestionObservacionRevision.preRenderViewListener}" />
+		</f:metadata>
+	
+		<h2 style="color:#0CBC90;">ELIMINAR REVISION</h2>
+	
+		<h:form id="datosRevision" style="margin-top:15px;">
+			<h:panelGrid columns="2">
+				<h:commandButton id="volver" value="Volver" action="ObservacionesRevisiones" />
+				
+				<h:commandButton id="eliminar" value="Eliminar" action="#{gestionObservacionRevision.bajaRevision}">
+					<f:param name="observacionId" value="${gestionObservacionRevision.observacionId}" />
+					<f:param name="usuarioId" value="${gestionObservacionRevision.usuarioId}" />
+					<f:param name="modalidad" value="delete" />
+				</h:commandButton>
+			</h:panelGrid>
+			
+			<h:messages style="color:red; margin:10px;" />
+			
+			<h:panelGrid columns="3" style="margin-top:15px;">
+				<h:outputLabel value="ID Usuario" />
+				<h:inputText id="usuarioId" disabled="true" value="#{gestionObservacionRevision.observacionRevisionGuiSeleccionada.id.usuarioId}" />
+				<h:message for="usuarioId" style="color:red" />
+				
+				<h:outputLabel value="ID Observacion" />
+				<h:inputText id="observacionId" disabled="true" value="#{gestionObservacionRevision.observacionRevisionGuiSeleccionada.id.observacionId}" />
+				<h:message for="observacionId" style="color:red" />
+				
+				<h:outputLabel value="Fiabilidad" />
+				<h:selectOneMenu disabled="true"  value="#{gestionObservacionRevision.observacionRevisionGuiSeleccionada.fiabilidad}" id="fiabilidad">
+					<f:selectItems value="#{gestionObservacionRevision.listaFiabilidad}"/>
+				</h:selectOneMenu>
+				<h:message for="fiabilidad" style="color:red" />
+				
+				<h:outputLabel value="Comentario" />
+				<h:inputText id="comentario" disabled="true"  value="#{gestionObservacionRevision.observacionRevisionGuiSeleccionada.comentario}" />
+				<h:message for="comentario" style="color:red" />
+				
+				<h:outputLabel value="Fecha" />
+				<h:inputText id="fecha" disabled="true" value="#{gestionObservacionRevision.observacionRevisionGuiSeleccionada.fecha}" >
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:inputText>
+				<h:message for="fecha" style="color:red" />		
+				
+			</h:panelGrid>
+		</h:form>
+	</body>
+</html>

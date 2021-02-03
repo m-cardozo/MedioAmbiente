@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core_1_1">
+
+	<h:head>
+		<title>Gestion de Observaciones</title>
+		<style>
+			* {
+				font-family: Arial;
+			}
+		</style>
+	</h:head>
+	
+	<body>
+		<f:metadata>
+			<f:viewParam name="observacionId" value="#{gestionObservacion.id}" />
+			<f:viewParam name="modalidad" value="#{gestionObservacion.modalidad}" />
+			<f:event type="preRenderView" listener="#{gestionObservacion.preRenderViewListener}" />
+		</f:metadata>
+	
+		<h2 style="color:#0CBC90;">ELIMINAR OBSERVACION</h2>
+	
+		<h:form id="datosObservacion" style="margin-top:15px;">
+			<h:panelGrid columns="2">
+				<h:commandButton id="volver" value="Volver" action="Observaciones" />
+				
+				<h:commandButton id="eliminar" value="Eliminar" action="#{gestionObservacion.bajaObservacion}">
+					<f:param name="observacionId" value="${gestionObservacion.id}" />
+					<f:param name="modalidad" value="delete" />
+				</h:commandButton>
+			</h:panelGrid>
+			
+			<h:messages style="color:red; margin:10px;" />
+			
+			<h:panelGrid columns="3" style="margin-top:15px;">
+				<h:outputLabel value="ID" />
+				<h:inputText id="observacionId" disabled="true" value="#{gestionObservacion.observacionGuiSeleccionada.observacionId}" />
+				<h:message for="observacionId" style="color:red" />
+	
+				<h:outputLabel value="Descripcion" />
+				<h:inputText id="descripcion" disabled="true" value="#{gestionObservacion.observacionGuiSeleccionada.descripcion}" />
+				<h:message for="descripcion" style="color:red" />
+				
+				<h:outputLabel value="Fecha" />
+				<h:inputText id="fecha" disabled="true" value="#{gestionObservacion.observacionGuiSeleccionada.fecha}" />
+				<h:message for="fecha" style="color:red" />
+				
+				<h:outputLabel value="Latitud" />
+				<h:inputText id="latitud" disabled="true" value="#{gestionObservacion.observacionGuiSeleccionada.latitud}" />
+				<h:message for="latitd" style="color:red" />
+				
+				<h:outputLabel value="Longitud" />
+				<h:inputText id="longitud" disabled="true" value="#{gestionObservacion.observacionGuiSeleccionada.longitud}" />
+				<h:message for="longitud" style="color:red" />
+				
+				<h:outputLabel value="Altitud" />
+				<h:inputText id="altitud" disabled="true" value="#{gestionObservacion.observacionGuiSeleccionada.altitud}" />
+				<h:message for="altitud" style="color:red" />
+				
+				<h:outputLabel value="Criticidad" />
+				<h:inputText id="nivelCritico" disabled="true" value="#{gestionObservacion.observacionGuiSeleccionada.nivelCritico}" />
+				<h:message for="nivelCritico" style="color:red" />
+				
+				<h:outputLabel value="Fenomeno" />
+				<h:inputText id="fenomeno" disabled="true" value="#{gestionObservacion.observacionGuiSeleccionada.fenomenoGui.descripcion}" />
+				<h:message for="fenomeno" style="color:red" />
+				
+				<h:outputLabel value="Localidad" />
+				<h:inputText id="localidad" disabled="true" value="#{gestionObservacion.observacionGuiSeleccionada.localidadGui.descripcion}" />
+				<h:message for="localidad" style="color:red" />
+				
+				<h:outputLabel value="Usuario" />
+				<h:inputText id="usuario" disabled="true" value="#{gestionObservacion.observacionGuiSeleccionada.usuarioGui.usuario}" />
+				<h:message for="usuario" style="color:red" />
+				
+			</h:panelGrid>
+		</h:form>
+	</body>
+</html>

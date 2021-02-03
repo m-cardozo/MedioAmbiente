@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+	<persistence-unit name="MedioAmbiente">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<jta-data-source>java:/OracleDS</jta-data-source>
+		<class>com.entidades.Caracteristica</class>
+		<class>com.entidades.ObservacionCaracteristica</class>
+		<class>com.entidades.ObservacionCaracteristicaPK</class>
+		<class>com.entidades.Localidad</class>
+		<class>com.entidades.Departamento</class>
+		<class>com.entidades.Fenomeno</class>
+		<class>com.entidades.Rol</class>
+		<class>com.entidades.Usuario</class>
+		<class>com.entidades.Zona</class>
+		<class>com.entidades.TipoDocumento</class>
+		<class>com.entidades.Observacion</class>
+		<class>com.entidades.ObservacionImagen</class>
+		<class>com.entidades.ObservacionRevision</class>
+		<class>com.entidades.ObservacionRevisionPK</class>
+		<properties>
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.show_sql" value="false" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect" />
+			<property name="hibernate.default_schema" value="PROYECTO" />
+			<property name="hibernate.enable_lazy_load_no_trans" value="true"/>
+		</properties>
+	</persistence-unit>
+</persistence>

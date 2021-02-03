@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:form>
+		<h1 style="color:#0CBC90; font-family:Arial; text-align:center; margin:5px;">MEDIO AMBIENTE WEB</h1>
+		
+		<p:growl id="messages" />
+		
+		<p:menubar style="background:#0CBC90;">
+			<p:submenu label="Menu">
+				<p:menuitem value="Gestion de Caracteristicas" url="/MedioAmbiente/paginas/Caracteristicas/Caracteristicas.xhtml" />
+				<p:menuitem value="Gestion de Departamentos" url="/MedioAmbiente/paginas/Departamentos/Departamentos.xhtml" />
+				<p:menuitem value="Gestion de Fenomenos" url="/MedioAmbiente/paginas/Fenomenos/Fenomenos.xhtml" />
+				<p:menuitem value="Gestion de Localidades" url="/MedioAmbiente/paginas/Localidades/Localidades.xhtml" />
+				<p:menuitem value="Gestion de Observaciones" url="/MedioAmbiente/paginas/Observaciones/Observaciones.xhtml" />
+				<p:menuitem value="Gestion de Roles" url="/MedioAmbiente/paginas/Roles/Roles.xhtml" />				
+				<p:menuitem value="Gestion de Tipos Documento" url="/MedioAmbiente/paginas/TiposDocumento/TiposDocumento.xhtml" />
+				<p:menuitem value="Gestion de Usuarios" url="/MedioAmbiente/paginas/Usuarios/Usuarios.xhtml" />
+				<p:menuitem value="Gestion de Zonas" url="/MedioAmbiente/paginas/Zonas/Zonas.xhtml" />				
+			</p:submenu>
+
+			<p:submenu label="Busquedas">
+				<p:menuitem value="Listado de Usuarios" url="/MedioAmbiente/paginas/Usuarios/Usuarios.xhtml" />
+				<p:menuitem value="Listado de Localidades" url="/MedioAmbiente/paginas/Localidades/Localidades.xhtml" />
+				<p:menuitem value="Listado de Departamentos" url="/MedioAmbiente/paginas/Departamentos/Departamentos.xhtml" />
+				<p:menuitem value="Listado de Zonas" url="/MedioAmbiente/paginas/Zonas/Zonas.xhtml" />
+			</p:submenu>
+
+			<f:facet name="options">
+				<p:commandButton type="button" value="Logout" icon="ui-icon-power" style="background:white; border:none; padding:2px;" />
+			</f:facet>
+		</p:menubar>
+	</h:form>
+</ui:composition>

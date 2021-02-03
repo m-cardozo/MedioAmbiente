@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+	
+	<h:head>
+		<title>Gestion de Departamentos</title>
+		<style>
+			* {
+				font-family: Arial;
+			}
+		</style>
+	</h:head>
+	
+	<h:body>
+		<f:metadata>
+			<f:viewParam name="departamentoId" value="#{gestionDepartamento.id}" />
+			<f:viewParam name="modalidad" value="#{gestionDepartamento.modalidad}" />
+			<f:event type="preRenderView" listener="#{gestionDepartamento.preRenderViewListener}" />
+		</f:metadata>
+		
+		<h2 style="color:#0CBC90;">MODIFICAR DEPARTAMENTO</h2>
+		
+		<h:form id="datosRol" style="margin-top:15px;">
+			<h:panelGrid columns="2">
+				<h:commandButton id="volver" value="Volver" action="Departamentos" />
+				
+				<h:commandButton id="modificar" value="Modificar" action="#{gestionDepartamento.modificarDepartamento}" />
+			</h:panelGrid>
+			
+			<h:messages id="messages" showDetail="true" globalOnly="true" closable="true" />
+			
+			<h:panelGrid columns="3" style="margin-top:15px;">
+				<h:outputLabel value="ID" />
+				<h:inputText id="departamentoId" disabled="true" value="#{gestionDepartamento.departamentoGuiSeleccionado.departamentoId}" />
+				<h:message for="departamentoId" style="color:red" />
+				
+				<h:outputLabel value="Descripcion" />
+				<h:inputText id="descripcion" value="#{gestionDepartamento.departamentoGuiSeleccionado.descripcion}" />
+				<h:message for="descripcion" style="color:red" />
+				
+				<h:outputLabel value="Zona" />
+				<h:selectOneMenu value="#{gestionDepartamento.zonaGuiSeleccionada.zonaId}">
+					<f:selectItems value="#{gestionDepartamento.listaZonas}"  var="z" 
+    				itemLabel="#{z.descripcion}"
+               		itemValue="#{z.zonaId}"/>
+				</h:selectOneMenu>
+				<h:message for="zona" style="color:red" />			
+				
+			</h:panelGrid>
+		</h:form>
+	</h:body>
+</html>

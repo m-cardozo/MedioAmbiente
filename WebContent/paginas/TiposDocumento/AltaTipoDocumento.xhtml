@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<h:head>
+		<title>Gestion de Tipos Documento</title>
+		<style>
+			* {
+				font-family: Arial;
+			}
+		</style>
+	</h:head>
+	
+	<h:body>
+		<f:metadata>
+			<f:viewParam name="tipoDocumentoId" value="#{gestionTipoDocumento.id}" />
+			<f:viewParam name="modalidad" value="#{gestionTipoDocumento.modalidad}" />
+			<f:event type="preRenderView" listener="#{gestionTipoDocumento.preRenderViewListener}" />
+		</f:metadata>
+		
+		<h2 style="color:#0CBC90;">NUEVO TIPO DOCUMENTO</h2>
+		
+		<h:form id="datosTipoDocumento" style="margin-top:15px;">
+			<h:panelGrid columns="2">
+				<h:commandButton id="volver" value="Volver" action="TiposDocumento" />
+				
+				<h:commandButton id="guardar" value="Guardar" action="#{gestionTipoDocumento.altaTipoDocumento}" />
+			</h:panelGrid>
+			
+			<h:messages id="messages" showDetail="true" globalOnly="true" closable="true" />
+			
+			<h:panelGrid columns="3" style="margin-top:15px;">
+				<h:outputLabel value="ID" />
+				<h:inputText id="tipoDocumentoId" disabled="true" value="#{gestionTipoDocumento.tipoDocumentoGuiSeleccionado.tipoDocumentoId}" />
+				<h:message for="tipoDocumentoId" style="color:red" />
+	
+				<h:outputLabel value="Descripcion" />
+				<h:inputText id="descripcion" value="#{gestionTipoDocumento.tipoDocumentoGuiSeleccionado.descripcion}" />
+				<h:message for="descripcion" style="color:red" />
+			</h:panelGrid>
+		</h:form>
+	</h:body>
+</html>

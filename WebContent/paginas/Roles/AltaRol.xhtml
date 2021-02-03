@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<h:head>
+		<title>Gestion de Roles</title>
+		<style>
+			* {
+				font-family: Arial;
+			}
+		</style>
+	</h:head>
+	
+	<h:body>
+		<f:metadata>
+			<f:viewParam name="rolId" value="#{gestionRol.id}" />
+			<f:viewParam name="modalidad" value="#{gestionRol.modalidad}" />
+			<f:event type="preRenderView" listener="#{gestionRol.preRenderViewListener}" />
+		</f:metadata>
+		
+		<h2 style="color:#0CBC90;">NUEVO ROL</h2>
+		
+		<h:form id="datosRol" style="margin-top:15px;">
+			<h:panelGrid columns="2">
+				<h:commandButton id="volver" value="Volver" action="Roles" />
+				
+				<h:commandButton id="guardar" value="Guardar" action="#{gestionRol.altaRol}" />
+			</h:panelGrid>
+			
+			<h:messages id="messages" showDetail="true" globalOnly="true" closable="true" />
+			
+			<h:panelGrid columns="3" style="margin-top:15px;">
+				<h:outputLabel value="ID" />
+				<h:inputText id="rolId" disabled="true" value="#{gestionRol.rolGuiSeleccionado.rolId}" />
+				<h:message for="rolId" style="color:red" />
+	
+				<h:outputLabel value="Descripcion" />
+				<h:inputText id="descripcion" value="#{gestionRol.rolGuiSeleccionado.descripcion}" />
+				<h:message for="descripcion" style="color:red" />
+			</h:panelGrid>
+		</h:form>
+	</h:body>
+</html>

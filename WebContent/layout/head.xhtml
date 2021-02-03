@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+	<h:head>
+		<meta HTTP-EQUIV="Content-Type" CONTENT="text/html;charset=ISO-8859-1" />
+
+		<title>Medio Ambiente Web</title>
+		<style>
+			body {
+				font-size: 75%;
+			}
+			.ui-layout-container {
+				overflow: auto !important;
+			}
+			.ui-layout-north, .ui-layout-west, .ui-layout-south {
+				z-index: 100 !important;
+			}
+			.ui-layout-south {
+				position: fixed !important;
+			}
+			.ui-layout-north .ui-layout-unit-content, .ui-layout-west, .ui-layout-north, .ui-layout-center, .ui-panelgrid td, .ui-panelgrid tr {
+				border: none !important;
+			}
+			.ui-layout-west  .ui-layout-unit-content, .ui-layout-north, .ui-widget-content, .ui-datatable * {
+				overflow: visible !important;
+			}
+			#pageContent {
+				width: 100% !important;
+				border: none;
+			}
+			table.padding_autocompletenew td {
+				padding-left: 0px;
+			}
+			#pageCenter #pageWest #pageSouth  #pageNorth {
+				border: none;
+			}
+			.ui-panel-titlebar {
+				background-color: #4086BF;
+				color: #585454;
+			}
+			.ui-toolbar {
+				background-color: white;
+				border: none;
+			}
+			.ui-panel-titlebar {
+				margin: 0;
+				padding: 0;
+				border: none;
+				color: #909090;
+				font-size: medium;
+			}
+		</style>
+	</h:head>
+</ui:composition>

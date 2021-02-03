@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+	
+	<f:event listener="#{gestionUsuario.preRenderViewListener}" type="preRenderView" />
+	
+	<h:head>
+		<title>Gestion de Usuarios</title>
+		<style>
+			* {
+				font-family: Arial;
+			}
+		</style>
+	</h:head>
+	
+	<h:body>
+		<f:metadata>
+			<f:viewParam name="observacionId" value="#{gestionObservacion.id}" />
+			<f:viewParam name="modalidad" value="#{gestionObservacion.modalidad}" />
+			<f:event type="preRenderView" listener="#{gestionObservacion.preRenderViewListener}" />
+		</f:metadata>
+		
+		<h2 style="color:#0CBC90;">MODIFICAR OBSERVACION</h2>
+		
+		<h:form id="datosObservacion" style="margin-top:15px;">
+			<h:panelGrid columns="2">
+				<h:commandButton id="volver" value="Volver" action="Observaciones" />
+				
+				<h:commandButton id="modificar" value="Modificar" action="#{gestionObservacion.modificarObservacion}" />
+			</h:panelGrid>
+			
+			<h:messages id="messages" showDetail="true" globalOnly="true" closable="true" />
+			
+			<h:panelGrid columns="3" style="margin-top:15px;">
+				<h:outputLabel value="ID" />
+				<h:inputText id="observacionId" disabled="true" value="#{gestionObservacion.observacionGuiSeleccionada.observacionId}" />
+				<h:message for="observacionId" style="color:red" />
+	
+				<h:outputLabel value="Descripcion" />
+				<h:inputText id="descripcion" value="#{gestionObservacion.observacionGuiSeleccionada.descripcion}" />
+				<h:message for="descripcion" style="color:red" />
+				
+				<h:outputLabel value="Fecha" />
+				<h:inputText id="fecha" value="#{gestionObservacion.observacionGuiSeleccionada.fecha}" >
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:inputText>
+				<h:message for="fecha" style="color:red" />
+				
+				<h:outputLabel value="Latitud" />
+				<h:inputText id="latitud" value="#{gestionObservacion.observacionGuiSeleccionada.latitud}" />
+				<h:message for="latitd" style="color:red" />
+				
+				<h:outputLabel value="Longitud" />
+				<h:inputText id="longitud" value="#{gestionObservacion.observacionGuiSeleccionada.longitud}" />
+				<h:message for="longitud" style="color:red" />
+				
+				<h:outputLabel value="Altitud" />
+				<h:inputText id="altitud" value="#{gestionObservacion.observacionGuiSeleccionada.altitud}" />
+				<h:message for="altitud" style="color:red" />
+				
+				<h:outputLabel value="Criticidad" />
+				<h:selectOneMenu value="#{gestionObservacion.observacionGuiSeleccionada.nivelCritico}" id="nivelCritico">
+					<f:selectItems value="#{gestionObservacion.listaNivelesCriticos}"/>
+				</h:selectOneMenu>
+				<h:message for="nivelCritico" style="color:red" />
+				
+				<h:outputLabel value="Fenomeno" />
+				<h:selectOneMenu value="#{gestionObservacion.observacionGuiSeleccionada.fenomenoGui.fenomenoId}" id="fenomeno">
+					<f:selectItems value="#{gestionObservacion.listaFenomenos}"  var="f" 
+    				itemLabel="#{f.nombre}"
+               		itemValue="#{f.fenomenoId}"/>
+				</h:selectOneMenu>
+				<h:message for="fenomeno" style="color:red" />
+				
+				<h:outputLabel value="Localidad" />
+				<h:selectOneMenu value="#{gestionObservacion.observacionGuiSeleccionada.localidadGui.localidadId}" id="localidad">
+					<f:selectItems value="#{gestionObservacion.listaLocalidades}"  var="l" 
+    				itemLabel="#{l.descripcion}"
+               		itemValue="#{l.localidadId}"/>
+				</h:selectOneMenu>
+				<h:message for="localidad" style="color:red" />
+												
+				<h:outputLabel value="Usuario" />
+				<h:selectOneMenu value="#{gestionObservacion.observacionGuiSeleccionada.usuarioGui.usuarioId}" id="usuario">
+					<f:selectItems value="#{gestionObservacion.listaUsuarios}"  var="u" 
+    				itemLabel="#{u.usuario}"
+               		itemValue="#{u.usuarioId}"/>
+				</h:selectOneMenu>
+				<h:message for="usuario" style="color:red" />
+			</h:panelGrid>
+		</h:form>
+	</h:body>
+</html>
